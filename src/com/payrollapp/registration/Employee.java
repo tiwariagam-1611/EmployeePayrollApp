@@ -3,6 +3,9 @@ package com.payrollapp.registration;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.payrollapp.validation.ValidationException;
+import com.payrollapp.validation.ValidationService;
+
 public class Employee {
     private String empId;
     private String name;
@@ -11,19 +14,22 @@ public class Employee {
     private String username;
     private String password;
 
+
     public Employee(String empId, String name, String email, String phone, String username, String password)
             throws ValidationException {
-        Validator.validateEmpId(empId);
-        Validator.validateEmail(email);
-        Validator.validatePhone(phone);
+        ValidationService.validateEmployeeId(empId);
+        ValidationService.validateEmail(email);
+        ValidationService.validatePhone(phone);
+        ValidationService.validatePassword(password);
 
         this.empId = empId;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.username = username;
-        this.password = password; 
+        this.password = password;
     }
+
 
     public String getEmpId() { return empId; }
     public String getName() { return name; }

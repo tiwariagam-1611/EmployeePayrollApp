@@ -13,6 +13,8 @@ Important idea:
 
 package com.payrollapp.registration;
 
+import com.payrollapp.validation.ValidationException;
+
 //Validator Class
 class Validator {
 
