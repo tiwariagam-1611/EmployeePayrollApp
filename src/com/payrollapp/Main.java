@@ -1,3 +1,18 @@
+// ============== MAIN APP ================
+/*
+ * Main runner class for Use Case 3.
+ *
+ * Role of main():
+ * - Collect input
+ * - Create required objects
+ * - Delegate calculations
+ * - Display final output
+  * @author Developer
+ * @version 3.0
+ * main() does NOT perform calculations itself.
+ */
+
+
 package com.payrollapp;
 
 import java.util.Scanner;
@@ -9,6 +24,18 @@ import com.payrollapp.payroll.Payslip;
 import com.payrollapp.registration.Employee;
 
 public class Main {
+/**
+ * Entry point for payslip generation.
+ *
+ * Execution Flow:
+ * 1. Capture employee details
+ * 2. Capture salary components
+ * 3. Generate payslip via service
+ * 4. Display formatted payslip
+ *
+ * @author Developer
+ * @version 3.0
+ */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
