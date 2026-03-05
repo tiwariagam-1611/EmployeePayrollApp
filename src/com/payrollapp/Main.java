@@ -1,33 +1,19 @@
-/*
- * --------------- Main Class ---------------
- *
- * Entry point of Use Case 1.
- *
- * Execution Flow:
- * 1. Take input from user
- * 2. Validate input
- * 3. Create objects
- * 4. Persist data
- * 5. Display confirmation
- *
- * @author Developer
- * @version 1.0
- */
-
 package com.payrollapp;
 
 import java.util.Scanner;
 
 import com.payrollapp.authentication.AuthenticationService;
 import com.payrollapp.authentication.Session;
+import com.payrollapp.payroll.PayrollService;
+import com.payrollapp.payroll.Payslip;
 import com.payrollapp.registration.Employee;
 
 public class Main {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        // === UC1: Registration ===
         System.out.println("=== USE CASE 1: EMPLOYEE REGISTRATION ===");
-
         try {
             System.out.print("Enter Employee ID (EMP-XXXX): ");
             String empId = sc.nextLine();
@@ -59,21 +45,37 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Registration Failed: " + e.getMessage());
         }
-        
-        System.out.println("=== USE CASE 2: EMPLOYEE AUTHENTICATION & LOGIN ===");
 
+        // === UC2: Authentication ===
+        System.out.println("=== USE CASE 2: EMPLOYEE AUTHENTICATION & LOGIN ===");
         AuthenticationService auth = new AuthenticationService();
         Session session = auth.login();
 
-        if (session != null) {
-            System.out.println("\n" + session);
-            if (!session.isExpired()) {
-                System.out.println("Session active and valid.");
+        // === UC3: Payslip Generation ===
+        if (session != null && !session.isExpired()) {
+            Employee emp = auth.getEmployeeByUsername(session.getUsername()); // will now return a real Employee
+            if (emp != null) {
+                PayrollService service = new PayrollService();
+
+                System.out.print("Enter Month: ");
+                String month = sc.nextLine();
+                System.out.print("Enter Basic Salary: ");
+                double basic = sc.nextDouble();
+                System.out.print("Enter HRA: ");
+                double hra = sc.nextDouble();
+                System.out.print("Enter DA: ");
+                double da = sc.nextDouble();
+                System.out.print("Enter Allowances: ");
+                double allowances = sc.nextDouble();
+
+                Payslip payslip = service.generatePayslip(emp, month, basic, hra, da, allowances);
+                System.out.println(payslip);
             } else {
-                System.out.println("Session expired.");
+                System.out.println("Error: Employee not found for session user.");
             }
         }
+
+
+        sc.close();
     }
-
 }
-

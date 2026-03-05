@@ -19,4 +19,7 @@ public class Session {
 	public String toString() {
 		return "Session active for user: " + username;
 	}
+    public String getUsername() {
+        return username;
+    }
 }
