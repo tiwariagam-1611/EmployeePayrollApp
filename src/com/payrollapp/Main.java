@@ -1,17 +1,17 @@
+// ================ Main Class ==================
 /*
- * --------------- Main Class ---------------
+ * Main runner class for Use Case 2.
  *
- * Entry point of Use Case 1.
+ * This class coordinates the login flow
+ * without implementing the logic itself.
  *
  * Execution Flow:
- * 1. Take input from user
- * 2. Validate input
- * 3. Create objects
- * 4. Persist data
- * 5. Display confirmation
+ * - Trigger login
+ * - Receive session
+ * - Validate session state
  *
  * @author Developer
- * @version 1.0
+ * @version 2.0
  */
 
 package com.payrollapp;
