@@ -13,8 +13,6 @@ import com.payrollapp.registration.Employee;
 * Payslip acts as a READ-ONLY view once created.
 */
 
-import com.payrollapp.registration.Employee;
-
 public class Payslip {
     private Employee employee;
     private SalaryComponents components;

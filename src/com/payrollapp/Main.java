@@ -1,14 +1,40 @@
+// ============== Main App ================
+/*
+ * Main runner class for Use Case 5.
+ *
+ * Role of main():
+ * - Collect user input
+ * - Prepare data
+ * - Request appropriate dashboard
+ * - Display dashboard
+ */
+
 package com.payrollapp;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
 import com.payrollapp.authentication.AuthenticationService;
 import com.payrollapp.authentication.Session;
 import com.payrollapp.payroll.PayrollService;
 import com.payrollapp.payroll.Payslip;
 import com.payrollapp.registration.Employee;
 import com.payrollapp.download.*;
+import com.payrollapp.dashboard.*;
 
 public class Main {
+	/**
+	 * Entry point for dashboard display.
+	 *
+	 * Execution Flow:
+	 * 1. Capture employee details
+	 * 2. Prepare payslip data
+	 * 3. Select dashboard at runtime
+	 * 4. Display dashboard output
+	 *
+	 * @author Developer
+	 * @version 5.0
+	 */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -86,6 +112,20 @@ public class Main {
                     }
                 } else {
                     System.out.println("Download token expired.");
+                }
+
+                // === UC5: Dashboard Display ===
+                System.out.println("\n=== USE CASE 5: DASHBOARD DISPLAY ===");
+                System.out.print("Enter Role (EMPLOYEE/MANAGER): ");
+                String role = sc.next().trim();
+
+                Dashboard dashboard = DashboardFactory.getDashboard(role);
+                if (dashboard != null) {
+                    ArrayList<Payslip> payslipList = new ArrayList<>();
+                    payslipList.add(payslip);
+                    dashboard.display(payslipList, emp);
+                } else {
+                    System.out.println("Invalid role entered.");
                 }
             } else {
                 System.out.println("Error: Employee not found for session user.");
