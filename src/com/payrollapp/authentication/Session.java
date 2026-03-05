@@ -1,25 +1,23 @@
 package com.payrollapp.authentication;
 
-//Session class
 public class Session {
-	private String username;
-	private long loginTime;
-	private long timeoutMillis = 300000; // 5 minutes
+    private String username;
+    private long loginTime;
+    private long timeoutMillis = 300000; // 5 minutes
 
-	public Session(String username) {
-		this.username = username;
-		this.loginTime = System.currentTimeMillis();
-	}
+    public Session(String username) {
+        this.username = username;
+        this.loginTime = System.currentTimeMillis();
+    }
 
-	public boolean isExpired() {
-		return System.currentTimeMillis() - loginTime > timeoutMillis;
-	}
+    public boolean isExpired() {
+        return System.currentTimeMillis() - loginTime > timeoutMillis;
+    }
 
-	@Override
-	public String toString() {
-		return "Session active for user: " + username;
-	}
-    public String getUsername() {
-        return username;
+    public String getUsername() { return username; }
+
+    @Override
+    public String toString() {
+        return "Session active for user: " + username;
     }
 }
