@@ -18,6 +18,10 @@ package com.payrollapp;
 
 import java.util.Scanner;
 
+import com.payrollapp.authentication.AuthenticationService;
+import com.payrollapp.authentication.Session;
+import com.payrollapp.registration.Employee;
+
 public class Main {
 	public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -55,7 +59,21 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Registration Failed: " + e.getMessage());
         }
+        
+        System.out.println("=== USE CASE 2: EMPLOYEE AUTHENTICATION & LOGIN ===");
 
-        sc.close();
+        AuthenticationService auth = new AuthenticationService();
+        Session session = auth.login();
+
+        if (session != null) {
+            System.out.println("\n" + session);
+            if (!session.isExpired()) {
+                System.out.println("Session active and valid.");
+            } else {
+                System.out.println("Session expired.");
+            }
+        }
     }
+
 }
+

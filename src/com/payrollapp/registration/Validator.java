@@ -11,8 +11,7 @@ Important idea:
 - Validation happens BEFORE objects are created
 */
 
-package com.payrollapp;
-
+package com.payrollapp.registration;
 
 //Validator Class
 class Validator {

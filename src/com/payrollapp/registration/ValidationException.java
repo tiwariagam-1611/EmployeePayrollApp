@@ -10,7 +10,7 @@ For now, think of this as:
 "A special error we throw when input is invalid"
 */
 
-package com.payrollapp;
+package com.payrollapp.registration;
 
 public class ValidationException extends Exception {
 	private static final long serialVersionUID = 1L;

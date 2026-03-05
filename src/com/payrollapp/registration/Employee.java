@@ -1,9 +1,9 @@
-package com.payrollapp;
+package com.payrollapp.registration;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-class Employee {
+public class Employee {
     private String empId;
     private String name;
     private String email;
