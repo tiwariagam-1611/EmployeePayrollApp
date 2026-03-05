@@ -1,3 +1,13 @@
+// =================== Main App ========================
+/*
+ * Main runner class for Use Case 4.
+ *
+ * Role of main():
+ * - Demonstrate safe usage of a finalized object
+ * - Coordinate cloning, validation, and persistence
+ *
+ * main() does NOT modify the original payslip.
+ */
 package com.payrollapp;
 
 import java.util.Scanner;
@@ -9,6 +19,20 @@ import com.payrollapp.registration.Employee;
 import com.payrollapp.download.*;
 
 public class Main {
+    /**
+	 * Entry point for payslip print / download use case.
+	 *
+	 * Execution Flow:
+	 * 1. Create original payslip
+	 * 2. Clone payslip for download
+	 * 3. Verify equality and identity
+	 * 4. Check download expiry
+	 * 5. Save payslip to files
+	 * 6. Print cloned payslip
+	 *
+	 * @author Developer
+	 * @version 4.0
+	 */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
